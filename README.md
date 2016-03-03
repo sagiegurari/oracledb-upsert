@@ -57,8 +57,8 @@ The output in the callback is the output of the INSERT/UPDATE operation.
 ```js
 connection.upsert({
   query: 'SELECT ID FROM MY_DATA WHERE ID = :id',
-  insert: 'INSERT INTO MY_DATA (ID, NAME) VALUES (:id, :name),
-  update: 'UPDATE MY_DATA SET NAME = :name WHERE ID = :id''
+  insert: 'INSERT INTO MY_DATA (ID, NAME) VALUES (:id, :name)',
+  update: 'UPDATE MY_DATA SET NAME = :name WHERE ID = :id'
 }, {
   id: 110,
   name: 'new name'
