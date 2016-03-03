@@ -43,7 +43,18 @@ oracledb.getConnection(function onConnection(error, connection) {
         //handle error
     } else {
         //work with new capabilities or original oracledb capabilities
-        connection.upsert(...);
+        connection.upsert({
+          query: 'SELECT ID FROM MY_DATA WHERE ID = :id',
+          insert: 'INSERT INTO MY_DATA (ID, NAME) VALUES (:id, :name)',
+          update: 'UPDATE MY_DATA SET NAME = :name WHERE ID = :id'
+        }, {
+          id: 110,
+          name: 'new name'
+        }, {
+          autoCommit: false
+        }, function onUpsert(error, results) {
+          //continue flow...
+        });
     }
 });
 ```
