@@ -1,9 +1,8 @@
-## Objects
+## Classes
 
 <dl>
-<dt><a href="#UpsertExtension">UpsertExtension</a> : <code>object</code></dt>
-<dd><p>The UPSERT extension.</p>
-</dd>
+<dt><a href="#Connection">Connection</a></dt>
+<dd></dd>
 </dl>
 
 ## Typedefs
@@ -14,21 +13,28 @@
 </dd>
 </dl>
 
-<a name="UpsertExtension"></a>
-## UpsertExtension : <code>object</code>
-The UPSERT extension.
-
-**Kind**: global namespace  
+<a name="Connection"></a>
+## Connection
+**Kind**: global class  
 **Access:** public  
 **Author:** Sagie Gur-Ari  
-<a name="UpsertExtension.upsert"></a>
-### UpsertExtension.upsert(sqls, bindParams, [options], callback)
+
+* [Connection](#Connection)
+    * [new Connection()](#new_Connection_new)
+    * [.upsert(sqls, bindParams, [options], callback)](#Connection.upsert)
+
+<a name="new_Connection_new"></a>
+### new Connection()
+This class holds all the extended capabilities added the oracledb connection.
+
+<a name="Connection.upsert"></a>
+### Connection.upsert(sqls, bindParams, [options], callback)
 The UPSERT oracledb extension gets 3 SQL statements.<br>
 It first queries the database of existing data, based on the output, it either runs INSERT or UPDATE SQL.<br>
 If it runs the INSERT and it fails on unique constraint, it will also run the UPDATE.<br>
 The output in the callback is the output of the INSERT/UPDATE operation.
 
-**Kind**: static method of <code>[UpsertExtension](#UpsertExtension)</code>  
+**Kind**: static method of <code>[Connection](#Connection)</code>  
 **Access:** public  
 
 | Param | Type | Description |
@@ -53,7 +59,13 @@ connection.upsert({
 }, {
   autoCommit: false
 }, function onUpsert(error, results) {
-  //continue flow...
+  if (error) {
+    //handle error...
+  } else {
+    console.log('rows affected: ', results.rowsAffected);
+
+    //continue flow...
+  }
 });
 ```
 <a name="AsyncCallback"></a>
