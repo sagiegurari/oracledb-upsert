@@ -36,7 +36,7 @@
     "grunt": "grunt"
   },
   "peerDependencies": {
-    "simple-oracledb": "^0.1.41"
+    "simple-oracledb": "^0.1.46"
   },
   "dependencies": {
     "async": "^1.5.2"

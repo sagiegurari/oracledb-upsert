@@ -56,7 +56,7 @@ describe('upsert Tests', function () {
                     arguments[arguments.length - 1](new Error('test error'));
                 };
 
-                connection.upsert({}, [], function (error, result) {
+                connection.upsert({}, {}, function (error, result) {
                     assert.isDefined(error);
                     assert.equal(error.message, 'test error');
                     assert.isUndefined(result);
@@ -86,6 +86,22 @@ describe('upsert Tests', function () {
             })
         });
 
+        it('array bind params', function (done) {
+            var oracledb = createOracleDB();
+
+            oracledb.getConnection(function (connectionError, connection) {
+                assert.isNull(connectionError);
+
+                connection.upsert({}, [], function (error, result) {
+                    assert.isDefined(error);
+                    assert.equal(error.message, 'Array type bind params are not supported.');
+                    assert.isUndefined(result);
+
+                    done();
+                });
+            })
+        });
+
         it('query error', function (done) {
             var oracledb = createOracleDB();
 
@@ -96,7 +112,7 @@ describe('upsert Tests', function () {
                     arguments[arguments.length - 1](new Error('test query error'));
                 };
 
-                connection.upsert({}, [], {}, function (error, result) {
+                connection.upsert({}, {}, {}, function (error, result) {
                     assert.isDefined(error);
                     assert.equal(error.message, 'test query error');
                     assert.isUndefined(result);
@@ -120,7 +136,7 @@ describe('upsert Tests', function () {
                     arguments[arguments.length - 1](new Error('test insert error'));
                 };
 
-                connection.upsert({}, [], {}, function (error, result) {
+                connection.upsert({}, {}, {}, function (error, result) {
                     assert.isDefined(error);
                     assert.equal(error.message, 'test insert error');
                     assert.isUndefined(result);
@@ -148,7 +164,7 @@ describe('upsert Tests', function () {
                     arguments[arguments.length - 1](new Error('test update error'));
                 };
 
-                connection.upsert({}, [], {}, function (error, result) {
+                connection.upsert({}, {}, {}, function (error, result) {
                     assert.isDefined(error);
                     assert.equal(error.message, 'test update error');
                     assert.isUndefined(result);
@@ -172,7 +188,7 @@ describe('upsert Tests', function () {
                     arguments[arguments.length - 1](new Error('test update2 error'));
                 };
 
-                connection.upsert({}, [], {}, function (error, result) {
+                connection.upsert({}, {}, {}, function (error, result) {
                     assert.isDefined(error);
                     assert.equal(error.message, 'test update2 error');
                     assert.isUndefined(result);
@@ -198,7 +214,7 @@ describe('upsert Tests', function () {
                     });
                 };
 
-                connection.upsert({}, [], {}, function (error, result) {
+                connection.upsert({}, {}, {}, function (error, result) {
                     assert.isNull(error);
                     assert.deepEqual(result, {
                         rowsAffected: 1
@@ -225,7 +241,18 @@ describe('upsert Tests', function () {
                     });
                 };
 
-                connection.upsert({}, [], {}, function (error, result) {
+                connection.upsert({
+                    query: 'SELECT * FROM MY_TABLE WHERE A = :a',
+                    update: 'UPDATE MY_TABLE SET B = :b, MY_CLOB = EMPTY_CLOB() WHERE A = :a'
+                }, {
+                    a: 1,
+                    b: 2,
+                    myClob: 3
+                }, {
+                    lobMetaInfo: {
+                        MY_CLOB: 'myClob'
+                    }
+                }, function (error, result) {
                     assert.isNull(error);
                     assert.deepEqual(result, {
                         rowsAffected: 1
@@ -252,7 +279,7 @@ describe('upsert Tests', function () {
                     });
                 };
 
-                connection.upsert({}, [], {}, function (error, result) {
+                connection.upsert({}, {}, {}, function (error, result) {
                     assert.isDefined(error);
                     assert.equal(error.message, 'No rows updated.');
                     assert.isUndefined(result);
@@ -285,7 +312,7 @@ describe('upsert Tests', function () {
                     });
                 };
 
-                connection.upsert({}, [], {}, function (error, result) {
+                connection.upsert({}, {}, {}, function (error, result) {
                     assert.isNull(error);
                     assert.isTrue(insertCalled);
                     assert.deepEqual(result, {
@@ -322,7 +349,7 @@ describe('upsert Tests', function () {
                     });
                 };
 
-                connection.upsert({}, [], {}, function (error, result) {
+                connection.upsert({}, {}, {}, function (error, result) {
                     assert.isNull(error);
                     assert.isTrue(insertCalled);
                     assert.deepEqual(result, {

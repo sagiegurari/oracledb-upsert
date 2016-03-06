@@ -43,7 +43,7 @@ The output in the callback is the output of the INSERT/UPDATE operation.
 | sqls.query | <code>string</code> | The SELECT SQL statement |
 | sqls.insert | <code>string</code> | The INSERT SQL statement |
 | sqls.update | <code>string</code> | The UPDATE SQL statement |
-| bindParams | <code>object</code> | The bind parameters used to specify the values for the columns, used by all execute operations |
+| bindParams | <code>object</code> | The bind parameters used to specify the values for the columns, used by all execute operations (arrays not supported, only named bind params) |
 | [options] | <code>object</code> | Used by all execute operations |
 | callback | <code>[AsyncCallback](#AsyncCallback)</code> | Invoked once the UPSERT is done with either an error or the output |
 
