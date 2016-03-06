@@ -331,11 +331,15 @@ describe('upsert Tests', function () {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
+                    assert.equal(arguments[0], 'select 1');
+
                     arguments[arguments.length - 1](null, []);
                 };
 
                 var insertCalled = false;
                 connection.insert = function () {
+                    assert.equal(arguments[0], 'insert 2');
+
                     insertCalled = true;
 
                     arguments[arguments.length - 1](null, {
@@ -344,12 +348,18 @@ describe('upsert Tests', function () {
                 };
 
                 connection.update = function () {
+                    assert.equal(arguments[0], 'update 3');
+
                     arguments[arguments.length - 1](null, {
                         rowsAffected: 1
                     });
                 };
 
-                connection.upsert({}, {}, {}, function (error, result) {
+                connection.upsert({
+                    query: 'select 1',
+                    insert: 'insert 2',
+                    update: 'update 3'
+                }, {}, {}, function (error, result) {
                     assert.isNull(error);
                     assert.isTrue(insertCalled);
                     assert.deepEqual(result, {
