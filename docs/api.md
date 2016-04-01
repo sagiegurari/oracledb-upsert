@@ -14,6 +14,7 @@
 </dl>
 
 <a name="Connection"></a>
+
 ## Connection
 **Kind**: global class  
 **Access:** public  
@@ -24,10 +25,12 @@
     * [.upsert(sqls, bindParams, [options], callback)](#Connection.upsert)
 
 <a name="new_Connection_new"></a>
+
 ### new Connection()
 This class holds all the extended capabilities added the oracledb connection.
 
 <a name="Connection.upsert"></a>
+
 ### Connection.upsert(sqls, bindParams, [options], callback)
 The UPSERT oracledb extension gets 3 SQL statements.<br>
 It first queries the database of existing data, based on the output, it either runs INSERT or UPDATE SQL.<br>
@@ -69,6 +72,7 @@ connection.upsert({
 });
 ```
 <a name="AsyncCallback"></a>
+
 ## AsyncCallback : <code>function</code>
 Invoked when an async operation has finished.
 
