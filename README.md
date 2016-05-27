@@ -114,7 +114,7 @@ See [contributing guide](.github/CONTRIBUTING.md)
 
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
-| 2016-05-11  | v0.0.10 | Maintenance |
+| 2016-05-27  | v0.0.11 | Maintenance |
 | 2016-03-04  | v0.0.1  | Initial release. |
 
 <a name="license"></a>
