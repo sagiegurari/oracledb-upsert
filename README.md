@@ -101,7 +101,7 @@ npm install --save oracledb-upsert
 ```
 
 This library doesn't define oracledb as a dependency and therefore it is not installed when installing oracledb-upsert.<br>
-You should define oracledb in your package.json and install it based on the oracledb installation instructions found at: https://github.com/oracle/node-oracledb/blob/master/INSTALL.md
+You should define oracledb in your package.json and install it based on the oracledb installation instructions found at: [installation guide](https://github.com/oracle/node-oracledb/blob/master/INSTALL.md)
 
 ## API Documentation
 See full docs at: [API Docs](docs/api.md)
@@ -114,7 +114,7 @@ See [contributing guide](.github/CONTRIBUTING.md)
 
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
-| 2016-05-27  | v0.0.11 | Maintenance |
+| 2016-05-28  | v0.0.12 | Maintenance |
 | 2016-03-04  | v0.0.1  | Initial release. |
 
 <a name="license"></a>
