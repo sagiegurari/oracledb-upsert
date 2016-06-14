@@ -1,6 +1,6 @@
 {
   "name": "oracledb-upsert",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "UPSERT (insert/update) extension to oracledb.",
   "author": {
     "name": "Sagie Gur-Ari",
@@ -36,7 +36,7 @@
     "grunt": "grunt"
   },
   "peerDependencies": {
-    "simple-oracledb": "^0.1.70"
+    "simple-oracledb": "^0.1.71"
   },
   "dependencies": {
     "async": "^1.5.2"
@@ -45,6 +45,7 @@
     "chai": "latest",
     "grunt": "latest",
     "grunt-cli": "latest",
+    "grunt-concurrent": "latest",
     "grunt-contrib-clean": "latest",
     "grunt-contrib-jshint": "latest",
     "grunt-coveralls": "latest",
@@ -57,8 +58,8 @@
     "grunt-mocha-istanbul": "latest",
     "husky": "latest",
     "istanbul": "latest",
+    "jit-grunt": "latest",
     "load-grunt-configs": "latest",
-    "load-grunt-tasks": "latest",
     "mocha": "latest",
     "time-grunt": "latest"
   }
