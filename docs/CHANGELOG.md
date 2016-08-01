@@ -1,4 +1,4 @@
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
-| 2016-08-01  | v0.0.37 | Maintenance |
+| 2016-08-01  | v0.0.38 | Maintenance |
 | 2016-03-04  | v0.0.1  | Initial release. |
