@@ -36,7 +36,7 @@ describe('upsert Tests', function () {
         it('valid', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (error, connection) {
+            oracledb.getConnection({}, function (error, connection) {
                 assert.isNull(error);
                 assert.isFunction(connection.upsert);
 
@@ -49,7 +49,7 @@ describe('upsert Tests', function () {
         it('no options', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (connectionError, connection) {
+            oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
@@ -69,7 +69,7 @@ describe('upsert Tests', function () {
         it('null bind params', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (connectionError, connection) {
+            oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
@@ -89,7 +89,7 @@ describe('upsert Tests', function () {
         it('array bind params', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (connectionError, connection) {
+            oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.upsert({}, [], function (error, result) {
@@ -105,7 +105,7 @@ describe('upsert Tests', function () {
         it('query error', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (connectionError, connection) {
+            oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
@@ -125,7 +125,7 @@ describe('upsert Tests', function () {
         it('insert general error', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (connectionError, connection) {
+            oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
@@ -149,7 +149,7 @@ describe('upsert Tests', function () {
         it('insert unique constraint error and update error', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (connectionError, connection) {
+            oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
@@ -177,7 +177,7 @@ describe('upsert Tests', function () {
         it('no insert and update error', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (connectionError, connection) {
+            oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
@@ -201,7 +201,7 @@ describe('upsert Tests', function () {
         it('insert valid', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (connectionError, connection) {
+            oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
@@ -228,7 +228,7 @@ describe('upsert Tests', function () {
         it('row exists, update valid', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (connectionError, connection) {
+            oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
@@ -266,7 +266,7 @@ describe('upsert Tests', function () {
         it('row exists, update did not modify any row', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (connectionError, connection) {
+            oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
@@ -292,7 +292,7 @@ describe('upsert Tests', function () {
         it('insert unique constraint error and update valid', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (connectionError, connection) {
+            oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
@@ -327,7 +327,7 @@ describe('upsert Tests', function () {
         it('insert no impact and update valid', function (done) {
             var oracledb = createOracleDB();
 
-            oracledb.getConnection(function (connectionError, connection) {
+            oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
