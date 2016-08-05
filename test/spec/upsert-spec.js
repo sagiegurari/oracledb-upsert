@@ -4,8 +4,9 @@
 
 var chai = require('chai');
 var assert = chai.assert;
+var PromiseLib = global.Promise || require('promiscuous');
 var SimpleOracleDB = require('simple-oracledb');
-var upsert = require('../../lib/upsert');
+require('../../lib/upsert');
 
 describe('upsert Tests', function () {
     var createOracleDB = function () {
@@ -41,7 +42,7 @@ describe('upsert Tests', function () {
                 assert.isFunction(connection.upsert);
 
                 done();
-            })
+            });
         });
     });
 
@@ -63,7 +64,7 @@ describe('upsert Tests', function () {
 
                     done();
                 });
-            })
+            });
         });
 
         it('null bind params', function (done) {
@@ -83,7 +84,7 @@ describe('upsert Tests', function () {
 
                     done();
                 });
-            })
+            });
         });
 
         it('array bind params', function (done) {
@@ -99,7 +100,7 @@ describe('upsert Tests', function () {
 
                     done();
                 });
-            })
+            });
         });
 
         it('query error', function (done) {
@@ -119,7 +120,7 @@ describe('upsert Tests', function () {
 
                     done();
                 });
-            })
+            });
         });
 
         it('insert general error', function (done) {
@@ -143,7 +144,7 @@ describe('upsert Tests', function () {
 
                     done();
                 });
-            })
+            });
         });
 
         it('insert unique constraint error and update error', function (done) {
@@ -171,7 +172,7 @@ describe('upsert Tests', function () {
 
                     done();
                 });
-            })
+            });
         });
 
         it('no insert and update error', function (done) {
@@ -195,7 +196,36 @@ describe('upsert Tests', function () {
 
                     done();
                 });
-            })
+            });
+        });
+
+        it('no insert and update error, using promise', function (done) {
+            var oracledb = createOracleDB();
+
+            oracledb.getConnection({}, function (connectionError, connection) {
+                assert.isNull(connectionError);
+
+                connection.query = function () {
+                    arguments[arguments.length - 1](null, [{}]);
+                };
+
+                connection.update = function () {
+                    arguments[arguments.length - 1](new Error('test update2 error'));
+                };
+
+                global.Promise = PromiseLib;
+
+                var promise = connection.upsert({}, {}, {});
+
+                promise.then(function () {
+                    assert.fail();
+                }).catch(function (error) {
+                    assert.isDefined(error);
+                    assert.equal(error.message, 'test update2 error');
+
+                    done();
+                });
+            });
         });
 
         it('insert valid', function (done) {
@@ -222,7 +252,39 @@ describe('upsert Tests', function () {
 
                     done();
                 });
-            })
+            });
+        });
+
+        it('insert valid, using promise', function (done) {
+            var oracledb = createOracleDB();
+
+            oracledb.getConnection({}, function (connectionError, connection) {
+                assert.isNull(connectionError);
+
+                connection.query = function () {
+                    arguments[arguments.length - 1](null, []);
+                };
+
+                connection.insert = function () {
+                    arguments[arguments.length - 1](null, {
+                        rowsAffected: 1
+                    });
+                };
+
+                global.Promise = PromiseLib;
+
+                var promise = connection.upsert({}, {}, {});
+
+                promise.then(function (result) {
+                    assert.deepEqual(result, {
+                        rowsAffected: 1
+                    });
+
+                    done();
+                }).catch(function () {
+                    assert.fail();
+                });
+            });
         });
 
         it('row exists, update valid', function (done) {
@@ -260,7 +322,50 @@ describe('upsert Tests', function () {
 
                     done();
                 });
-            })
+            });
+        });
+
+        it('row exists, update valid, using promise', function (done) {
+            var oracledb = createOracleDB();
+
+            oracledb.getConnection({}, function (connectionError, connection) {
+                assert.isNull(connectionError);
+
+                connection.query = function () {
+                    arguments[arguments.length - 1](null, [{}]);
+                };
+
+                connection.update = function () {
+                    arguments[arguments.length - 1](null, {
+                        rowsAffected: 1
+                    });
+                };
+
+                global.Promise = PromiseLib;
+
+                var promise = connection.upsert({
+                    query: 'SELECT * FROM MY_TABLE WHERE A = :a',
+                    update: 'UPDATE MY_TABLE SET B = :b, MY_CLOB = EMPTY_CLOB() WHERE A = :a'
+                }, {
+                    a: 1,
+                    b: 2,
+                    myClob: 3
+                }, {
+                    lobMetaInfo: {
+                        MY_CLOB: 'myClob'
+                    }
+                });
+
+                promise.then(function (result) {
+                    assert.deepEqual(result, {
+                        rowsAffected: 1
+                    });
+
+                    done();
+                }).catch(function () {
+                    assert.fail();
+                });
+            });
         });
 
         it('row exists, update did not modify any row', function (done) {
@@ -286,7 +391,7 @@ describe('upsert Tests', function () {
 
                     done();
                 });
-            })
+            });
         });
 
         it('insert unique constraint error and update valid', function (done) {
@@ -321,7 +426,7 @@ describe('upsert Tests', function () {
 
                     done();
                 });
-            })
+            });
         });
 
         it('insert no impact and update valid', function (done) {
@@ -368,7 +473,7 @@ describe('upsert Tests', function () {
 
                     done();
                 });
-            })
+            });
         });
     });
 });
