@@ -1,6 +1,6 @@
 {
   "name": "oracledb-upsert",
-  "version": "0.0.45",
+  "version": "0.0.46",
   "description": "UPSERT (insert/update) extension to oracledb.",
   "author": {
     "name": "Sagie Gur-Ari",

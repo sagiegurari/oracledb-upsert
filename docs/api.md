@@ -22,7 +22,7 @@
 
 * [Connection](#Connection)
     * [new Connection()](#new_Connection_new)
-    * [.upsert(sqls, bindParams, [options], callback)](#Connection.upsert)
+    * [.upsert(sqls, bindParams, [options], [callback])](#Connection.upsert) ⇒ <code>Promise</code>
 
 <a name="new_Connection_new"></a>
 
@@ -31,13 +31,14 @@ This class holds all the extended capabilities added the oracledb connection.
 
 <a name="Connection.upsert"></a>
 
-### Connection.upsert(sqls, bindParams, [options], callback)
+### Connection.upsert(sqls, bindParams, [options], [callback]) ⇒ <code>Promise</code>
 The UPSERT oracledb extension gets 3 SQL statements.<br>
 It first queries the database for existing data, based on the output, it either runs INSERT or UPDATE SQL.<br>
 If it runs the INSERT and it fails on unique constraint, it will also run the UPDATE.<br>
 The output in the callback is the output of the INSERT/UPDATE operation.
 
 **Kind**: static method of <code>[Connection](#Connection)</code>  
+**Returns**: <code>Promise</code> - In case of no callback provided in input and promise is supported, this function will return a promise  
 **Access:** public  
 
 | Param | Type | Description |
@@ -48,7 +49,7 @@ The output in the callback is the output of the INSERT/UPDATE operation.
 | sqls.update | <code>string</code> | The UPDATE SQL statement |
 | bindParams | <code>object</code> | The bind parameters used to specify the values for the columns, used by all execute operations (arrays not supported, only named bind params) |
 | [options] | <code>object</code> | Used by all execute operations |
-| callback | <code>[AsyncCallback](#AsyncCallback)</code> | Invoked once the UPSERT is done with either an error or the output |
+| [callback] | <code>[AsyncCallback](#AsyncCallback)</code> | Invoked once the UPSERT is done with either an error or the output |
 
 **Example**  
 ```js
