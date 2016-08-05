@@ -67,7 +67,7 @@ oracledb.getConnection(function onConnection(error, connection) {
 
 ### 'connection.upsert(sqls, bindParams, [options], [callback]) ⇒ [Promise]'
 The UPSERT oracledb extension gets 3 SQL statements.<br>
-It first queries the database of existing data, based on the output, it either runs INSERT or UPDATE SQL.<br>
+It first queries the database for existing data, based on the output, it either runs INSERT or UPDATE SQL.<br>
 If it runs the INSERT and it fails on unique constraint, it will also run the UPDATE.<br>
 The output in the callback is the output of the INSERT/UPDATE operation.
 
@@ -114,7 +114,7 @@ See [contributing guide](.github/CONTRIBUTING.md)
 
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
-| 2016-08-05  | v0.0.44 | Maintenance |
+| 2016-08-05  | v0.0.45 | Maintenance |
 | 2016-08-05  | v0.0.43 | Added promise support |
 | 2016-08-03  | v0.0.42 | Maintenance |
 | 2016-03-04  | v0.0.1  | Initial release. |

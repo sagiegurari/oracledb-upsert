@@ -33,7 +33,7 @@ This class holds all the extended capabilities added the oracledb connection.
 
 ### Connection.upsert(sqls, bindParams, [options], callback)
 The UPSERT oracledb extension gets 3 SQL statements.<br>
-It first queries the database of existing data, based on the output, it either runs INSERT or UPDATE SQL.<br>
+It first queries the database for existing data, based on the output, it either runs INSERT or UPDATE SQL.<br>
 If it runs the INSERT and it fails on unique constraint, it will also run the UPDATE.<br>
 The output in the callback is the output of the INSERT/UPDATE operation.
 
