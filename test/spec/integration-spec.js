@@ -29,6 +29,8 @@ describe('Integration Tests', function () {
         oracledb.autoCommit = true;
 
         var simpleOracleDB = require('simple-oracledb');
+        require('../../'); //load upsert
+
         simpleOracleDB.extend(oracledb);
 
         var end = function (done, connection) {
