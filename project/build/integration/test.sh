@@ -1,7 +1,7 @@
 #!/bin/bash
 
 wget https://github.com/sagiegurari/oracledb-upsert/archive/master.zip
-unzip -q oracledb-upsert-master.zip
+unzip -q master.zip
 cd ./oracledb-upsert-master
 
 export OCI_LIB_DIR="/opt/oracle/instantclient"
