@@ -1,5 +1,5 @@
 language: node_js
-sudo: false
+sudo: true
 node_js:
   - "6"
   - "5"
@@ -10,4 +10,9 @@ node_js:
 before_install:
   - npm install -g npm
 before_script:
+  - chmod -R 777 ./project/build/integration
   - npm install simple-oracledb
+env:
+  - DOCKER_INTEGRATION_TEST_NODE_VERSION=6
+services:
+  - docker

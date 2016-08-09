@@ -8,33 +8,28 @@ var assert = chai.assert;
 describe('Integration Tests', function () {
     var self = this;
 
-    var oracledb;
-    var SimpleOracleDB;
     var integrated = true;
-    try {
-        oracledb = require('oracledb');
-        SimpleOracleDB = require('simple-oracledb');
+    var connAttrs = {
+        user: process.env.TEST_ORACLE_USER,
+        password: process.env.TEST_ORACLE_PASSWORD,
+        connectString: process.env.TEST_ORACLE_CONNECTION_STRING
+    };
 
-        SimpleOracleDB.extend(oracledb);
-
-        require('../../');
-    } catch (error) {
+    if ((!connAttrs.user) || (!connAttrs.password) || (!connAttrs.connectString)) {
         integrated = false;
     }
 
-    var connAttrs = {};
-    if (integrated && oracledb) {
-        connAttrs.user = process.env.TEST_ORACLE_USER;
-        connAttrs.password = process.env.TEST_ORACLE_PASSWORD;
-        connAttrs.connectString = process.env.TEST_ORACLE_CONNECTION_STRING;
+    if (!integrated) {
+        it('empty', function () {
+            return undefined;
+        });
+    } else {
+        var oracledb = require('oracledb');
 
-        if ((!connAttrs.user) || (!connAttrs.password) || (!connAttrs.connectString)) {
-            integrated = false;
-        }
-    }
-
-    if (integrated) {
         oracledb.autoCommit = true;
+
+        var simpleOracleDB = require('simple-oracledb');
+        simpleOracleDB.extend(oracledb);
 
         var end = function (done, connection) {
             if (connection) {
@@ -115,7 +110,7 @@ describe('Integration Tests', function () {
                     query: 'SELECT ID FROM ' + table + ' WHERE ID = :id',
                     insert: 'INSERT INTO ' + table + ' (ID, NAME, LOB_DATA) VALUES (:id, :name, EMPTY_CLOB())',
                     update: 'UPDATE ' + table + ' SET NAME = :name, LOB_DATA = EMPTY_CLOB() WHERE ID = :id'
-                }
+                };
             };
 
             it('empty table', function (done) {
