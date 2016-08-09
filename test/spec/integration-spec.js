@@ -117,7 +117,7 @@ describe('Integration Tests', function () {
                 var table = 'TEST_ORA1';
                 initDB(table, null, function (pool) {
                     pool.getConnection(function (err, connection) {
-                        assert.isUndefined(err);
+                        assert.isNull(err);
 
                         connection.query('SELECT * FROM ' + table, function (error1, jsRows) {
                             assert.isNull(error1);
@@ -159,7 +159,7 @@ describe('Integration Tests', function () {
                     name: 'old name'
                 }], function (pool) {
                     pool.getConnection(function (err, connection) {
-                        assert.isUndefined(err);
+                        assert.isNull(err);
 
                         connection.query('SELECT * FROM ' + table, function (error1, jsRows) {
                             assert.isNull(error1);
