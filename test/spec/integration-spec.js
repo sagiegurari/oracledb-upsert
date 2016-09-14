@@ -1,5 +1,6 @@
 'use strict';
-/*global describe: false, it: false */
+
+/*global describe: false, it: false*/
 
 var asyncLib = require('async');
 var chai = require('chai');
@@ -140,11 +141,13 @@ describe('Integration Tests', function () {
 
                                 connection.query('SELECT * FROM ' + table, function (error3, jsRows3) {
                                     assert.isNull(error3);
-                                    assert.deepEqual([{
-                                        ID: 110,
-                                        NAME: 'new name',
-                                        LOB_DATA: 'some long CLOB text here'
-                                    }], jsRows3);
+                                    assert.deepEqual([
+                                        {
+                                            ID: 110,
+                                            NAME: 'new name',
+                                            LOB_DATA: 'some long CLOB text here'
+                                        }
+                                    ], jsRows3);
 
                                     end(done, connection);
                                 });
@@ -156,20 +159,24 @@ describe('Integration Tests', function () {
 
             it('existing row table', function (done) {
                 var table = 'TEST_ORA2';
-                initDB(table, [{
-                    id: 110,
-                    name: 'old name'
-                }], function (pool) {
+                initDB(table, [
+                    {
+                        id: 110,
+                        name: 'old name'
+                    }
+                ], function (pool) {
                     pool.getConnection(function (err, connection) {
                         assert.isNull(err);
 
                         connection.query('SELECT * FROM ' + table, function (error1, jsRows) {
                             assert.isNull(error1);
-                            assert.deepEqual([{
-                                ID: 110,
-                                NAME: 'old name',
-                                LOB_DATA: undefined
-                            }], jsRows);
+                            assert.deepEqual([
+                                {
+                                    ID: 110,
+                                    NAME: 'old name',
+                                    LOB_DATA: undefined
+                                }
+                            ], jsRows);
 
                             connection.upsert(createSQLs(table), {
                                 id: 110,
@@ -186,11 +193,13 @@ describe('Integration Tests', function () {
 
                                 connection.query('SELECT * FROM ' + table, function (error3, jsRows3) {
                                     assert.isNull(error3);
-                                    assert.deepEqual([{
-                                        ID: 110,
-                                        NAME: 'new name',
-                                        LOB_DATA: 'some long CLOB text here'
-                                    }], jsRows3);
+                                    assert.deepEqual([
+                                        {
+                                            ID: 110,
+                                            NAME: 'new name',
+                                            LOB_DATA: 'some long CLOB text here'
+                                        }
+                                    ], jsRows3);
 
                                     end(done, connection);
                                 });
