@@ -9,6 +9,10 @@ var SimpleOracleDB = require('simple-oracledb');
 require('../../lib/upsert');
 
 describe('upsert Tests', function () {
+    var asArray = function (args) {
+        return Array.prototype.slice.call(args, 0);
+    };
+
     var createOracleDB = function () {
         var failFunc = function () {
             assert.fail();
@@ -19,7 +23,8 @@ describe('upsert Tests', function () {
                 return undefined;
             },
             getConnection: function () {
-                var callback = arguments[arguments.length - 1];
+                var args = asArray(arguments);
+                var callback = args[args.length - 1];
                 callback(null, {
                     query: failFunc,
                     insert: failFunc,
@@ -54,7 +59,8 @@ describe('upsert Tests', function () {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
-                    arguments[arguments.length - 1](new Error('test error'));
+                    var args = asArray(arguments);
+                    args[args.length - 1](new Error('test error'));
                 };
 
                 connection.upsert({}, {}, function (error, result) {
@@ -436,26 +442,29 @@ describe('upsert Tests', function () {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
-                    assert.equal(arguments[0], 'select 1');
+                    var args = asArray(arguments);
+                    assert.equal(args[0], 'select 1');
 
-                    arguments[arguments.length - 1](null, []);
+                    args[args.length - 1](null, []);
                 };
 
                 var insertCalled = false;
                 connection.insert = function () {
-                    assert.equal(arguments[0], 'insert 2');
+                    var args = asArray(arguments);
+                    assert.equal(args[0], 'insert 2');
 
                     insertCalled = true;
 
-                    arguments[arguments.length - 1](null, {
+                    args[args.length - 1](null, {
                         rowsAffected: 0
                     });
                 };
 
                 connection.update = function () {
-                    assert.equal(arguments[0], 'update 3');
+                    var args = asArray(arguments);
+                    assert.equal(args[0], 'update 3');
 
-                    arguments[arguments.length - 1](null, {
+                    args[args.length - 1](null, {
                         rowsAffected: 1
                     });
                 };
