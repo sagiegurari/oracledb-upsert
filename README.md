@@ -65,12 +65,15 @@ oracledb.getConnection(function onConnection(error, connection) {
 });
 ```
 
-### 'connection.upsert(sqls, bindParams, [options], [callback]) ⇒ [Promise]'
+<a name="connection-upsert"></a>
+<!-- markdownlint-disable MD009 MD031 MD036 -->
+### 'Connection.upsert(sqls, bindParams, [options], [callback]) ⇒ Promise'
 The UPSERT oracledb extension gets 3 SQL statements.<br>
 It first queries the database for existing data, based on the output, it either runs INSERT or UPDATE SQL.<br>
 If it runs the INSERT and it fails on unique constraint, it will also run the UPDATE.<br>
 The output in the callback is the output of the INSERT/UPDATE operation.
 
+**Example**  
 ```js
 connection.upsert({
   query: 'SELECT ID FROM MY_DATA WHERE ID = :id',
@@ -91,6 +94,7 @@ connection.upsert({
   }
 });
 ```
+<!-- markdownlint-enable MD009 MD031 MD036 -->
 
 <a name="installation"></a>
 ## Installation
@@ -114,7 +118,7 @@ See [contributing guide](.github/CONTRIBUTING.md)
 
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
-| 2016-09-15  | v1.0.16 | Maintenance |
+| 2016-09-21  | v1.0.17 | Maintenance |
 | 2016-08-05  | v0.0.43 | Added promise support |
 | 2016-08-03  | v0.0.42 | Maintenance |
 | 2016-03-04  | v0.0.1  | Initial release. |

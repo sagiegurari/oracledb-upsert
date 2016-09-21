@@ -65,32 +65,7 @@ oracledb.getConnection(function onConnection(error, connection) {
 });
 ```
 
-### 'connection.upsert(sqls, bindParams, [options], [callback]) ⇒ [Promise]'
-The UPSERT oracledb extension gets 3 SQL statements.<br>
-It first queries the database for existing data, based on the output, it either runs INSERT or UPDATE SQL.<br>
-If it runs the INSERT and it fails on unique constraint, it will also run the UPDATE.<br>
-The output in the callback is the output of the INSERT/UPDATE operation.
-
-```js
-connection.upsert({
-  query: 'SELECT ID FROM MY_DATA WHERE ID = :id',
-  insert: 'INSERT INTO MY_DATA (ID, NAME) VALUES (:id, :name)',
-  update: 'UPDATE MY_DATA SET NAME = :name WHERE ID = :id'
-}, {
-  id: 110,
-  name: 'new name'
-}, {
-  autoCommit: false
-}, function onUpsert(error, results) {
-  if (error) {
-    //handle error...
-  } else {
-    console.log('rows affected: ', results.rowsAffected);
-
-    //continue flow...
-  }
-});
-```
+<a name="connection-upsert"></a>
 
 <a name="installation"></a>
 ## Installation
