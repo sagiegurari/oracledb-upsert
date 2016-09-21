@@ -24,6 +24,9 @@ module.exports = function (grunt) {
                         options: {
                             tags: {
                                 'connection-upsert': 'Connection.upsert'
+                            },
+                            modifySignature: function (line) {
+                                return line.split('Connection.').join('connection.');
                             }
                         }
                     }
