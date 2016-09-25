@@ -11,27 +11,18 @@ module.exports = function (grunt) {
         buildConfig: {
             projectRoot: __dirname,
             nodeProject: true
-        }
-    }, function projectConfig() {
-        grunt.registerTask('project-docs', 'Create project docs', [
-            'apidoc2readme:readme'
-        ]);
-
-        return {
-            tasks: {
-                apidoc2readme: {
-                    readme: {
-                        options: {
-                            tags: {
-                                'connection-upsert': 'Connection.upsert'
-                            },
-                            modifySignature: function (line) {
-                                return line.split('Connection.').join('connection.');
-                            }
-                        }
+        },
+        apidoc2readme: {
+            readme: {
+                options: {
+                    tags: {
+                        'connection-upsert': 'Connection.upsert'
+                    },
+                    modifySignature: function (line) {
+                        return line.split('Connection.').join('connection.');
                     }
                 }
             }
-        };
+        }
     });
 };
