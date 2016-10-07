@@ -19,7 +19,7 @@ module.exports = function (grunt) {
                         'connection-upsert': 'Connection.upsert'
                     },
                     modifySignature: function (line) {
-                        return line.split('Connection.').join('connection.');
+                        return line.split('Connection.').join('connection.').split('Promise').join('[Promise]');
                     }
                 }
             }
