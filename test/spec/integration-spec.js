@@ -174,7 +174,7 @@ describe('Integration Tests', function () {
                                 {
                                     ID: 110,
                                     NAME: 'old name',
-                                    LOB_DATA: undefined
+                                    LOB_DATA: null
                                 }
                             ], jsRows);
 
