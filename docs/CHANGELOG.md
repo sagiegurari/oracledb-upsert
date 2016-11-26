@@ -1,6 +1,6 @@
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
-| 2016-11-25  | v1.0.40 | Maintenance |
+| 2016-11-26  | v1.0.41 | Maintenance |
 | 2016-08-05  | v0.0.43 | Added promise support |
 | 2016-08-03  | v0.0.42 | Maintenance |
 | 2016-03-04  | v0.0.1  | Initial release. |
