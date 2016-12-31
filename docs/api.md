@@ -43,12 +43,12 @@ The output in the callback is the output of the INSERT/UPDATE operation.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| sqls | <code>object</code> | Holds all required SQLs to support the UPSERT capability |
-| sqls.query | <code>string</code> | The SELECT SQL statement |
-| sqls.insert | <code>string</code> | The INSERT SQL statement |
-| sqls.update | <code>string</code> | The UPDATE SQL statement |
-| bindParams | <code>object</code> | The bind parameters used to specify the values for the columns, used by all execute operations (arrays not supported, only named bind params) |
-| [options] | <code>object</code> | Used by all execute operations |
+| sqls | <code>Object</code> | Holds all required SQLs to support the UPSERT capability |
+| sqls.query | <code>String</code> | The SELECT SQL statement |
+| sqls.insert | <code>String</code> | The INSERT SQL statement |
+| sqls.update | <code>String</code> | The UPDATE SQL statement |
+| bindParams | <code>Object</code> | The bind parameters used to specify the values for the columns, used by all execute operations (arrays not supported, only named bind params) |
+| [options] | <code>Object</code> | Used by all execute operations |
 | [callback] | <code>[AsyncCallback](#AsyncCallback)</code> | Invoked once the UPSERT is done with either an error or the output |
 
 **Example**  
@@ -81,6 +81,6 @@ Invoked when an async operation has finished.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [error] | <code>error</code> | Any possible error |
-| [output] | <code>object</code> | The operation output |
+| [error] | <code>Error</code> | Any possible error |
+| [output] | <code>Object</code> | The operation output |
 
