@@ -17,8 +17,8 @@
 
 ## Connection
 **Kind**: global class  
-**Access:** public  
-**Author:** Sagie Gur-Ari  
+**Access**: public  
+**Author**: Sagie Gur-Ari  
 
 * [Connection](#Connection)
     * [new Connection()](#new_Connection_new)
@@ -39,7 +39,7 @@ The output in the callback is the output of the INSERT/UPDATE operation.
 
 **Kind**: static method of <code>[Connection](#Connection)</code>  
 **Returns**: <code>Promise</code> - In case of no callback provided in input and promise is supported, this function will return a promise  
-**Access:** public  
+**Access**: public  
 
 | Param | Type | Description |
 | --- | --- | --- |
