@@ -37,7 +37,7 @@ It first queries the database for existing data, based on the output, it either 
 If it runs the INSERT and it fails on unique constraint, it will also run the UPDATE.<br>
 The output in the callback is the output of the INSERT/UPDATE operation.
 
-**Kind**: static method of <code>[Connection](#Connection)</code>  
+**Kind**: static method of [<code>Connection</code>](#Connection)  
 **Returns**: <code>Promise</code> - In case of no callback provided in input and promise is supported, this function will return a promise  
 **Access**: public  
 
@@ -49,7 +49,7 @@ The output in the callback is the output of the INSERT/UPDATE operation.
 | sqls.update | <code>String</code> | The UPDATE SQL statement |
 | bindParams | <code>Object</code> | The bind parameters used to specify the values for the columns, used by all execute operations (arrays not supported, only named bind params) |
 | [options] | <code>Object</code> | Used by all execute operations |
-| [callback] | <code>[AsyncCallback](#AsyncCallback)</code> | Invoked once the UPSERT is done with either an error or the output |
+| [callback] | [<code>AsyncCallback</code>](#AsyncCallback) | Invoked once the UPSERT is done with either an error or the output |
 
 **Example**  
 ```js
