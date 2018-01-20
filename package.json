@@ -42,7 +42,8 @@
   "peerDependencies": {
     "simple-oracledb": "^1.1.88"
   },
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "chai": "latest",
     "grunt": "latest",
