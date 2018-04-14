@@ -1,5 +1,5 @@
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
-| 2018-03-20  | v1.0.86 | Maintenance |
+| 2018-04-14  | v1.0.87 | Maintenance |
 | 2016-08-05  | v0.0.43 | Added promise support |
 | 2016-03-04  | v0.0.1  | Initial release. |
