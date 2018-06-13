@@ -1,6 +1,6 @@
 {
   "name": "oracledb-upsert",
-  "version": "1.0.88",
+  "version": "1.0.89",
   "description": "UPSERT (insert/update) extension to oracledb.",
   "author": {
     "name": "Sagie Gur-Ari",
@@ -40,7 +40,7 @@
     "grunt": "grunt"
   },
   "peerDependencies": {
-    "simple-oracledb": "^1.2.3"
+    "simple-oracledb": "^1.2.4"
   },
   "dependencies": {},
   "devDependencies": {
