@@ -12,6 +12,6 @@ before_script:
   - npm install simple-oracledb
 env:
   global:
-    - DOCKER_INTEGRATION_TEST_NODE_VERSION=12
+    - DOCKER_INTEGRATION_TEST_NODE_VERSION=0
 services:
   - docker
