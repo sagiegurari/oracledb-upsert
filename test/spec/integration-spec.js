@@ -1,7 +1,5 @@
 'use strict';
 
-/*global describe: false, it: false*/
-
 var asyncLib = require('async');
 var chai = require('chai');
 var assert = chai.assert;
