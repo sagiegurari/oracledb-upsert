@@ -1,28 +1,28 @@
 'use strict';
 
-var chai = require('chai');
-var assert = chai.assert;
-var PromiseLib = global.Promise || require('promiscuous');
-var SimpleOracleDB = require('simple-oracledb');
+const chai = require('chai');
+const assert = chai.assert;
+const PromiseLib = global.Promise || require('promiscuous');
+const SimpleOracleDB = require('simple-oracledb');
 require('../../lib/upsert');
 
 describe('upsert Tests', function () {
-    var asArray = function (args) {
+    const asArray = function (args) {
         return Array.prototype.slice.call(args, 0);
     };
 
-    var createOracleDB = function () {
-        var failFunc = function () {
+    const createOracleDB = function () {
+        const failFunc = function () {
             assert.fail();
         };
 
-        var oracledb = {
-            createPool: function () {
+        const oracledb = {
+            createPool() {
                 return undefined;
             },
-            getConnection: function () {
-                var args = asArray(arguments);
-                var callback = args[args.length - 1];
+            getConnection() {
+                const args = asArray(arguments);
+                const callback = args[args.length - 1];
                 callback(null, {
                     query: failFunc,
                     insert: failFunc,
@@ -38,7 +38,7 @@ describe('upsert Tests', function () {
 
     describe('extension', function () {
         it('valid', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (error, connection) {
                 assert.isNull(error);
@@ -51,13 +51,13 @@ describe('upsert Tests', function () {
 
     describe('upsert', function () {
         it('no options', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
-                    var args = asArray(arguments);
+                    const args = asArray(arguments);
                     args[args.length - 1](new Error('test error'));
                 };
 
@@ -72,7 +72,7 @@ describe('upsert Tests', function () {
         });
 
         it('null bind params', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -92,7 +92,7 @@ describe('upsert Tests', function () {
         });
 
         it('array bind params', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -108,7 +108,7 @@ describe('upsert Tests', function () {
         });
 
         it('query error', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -128,7 +128,7 @@ describe('upsert Tests', function () {
         });
 
         it('insert general error', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -152,7 +152,7 @@ describe('upsert Tests', function () {
         });
 
         it('insert unique constraint error and update error', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -180,7 +180,7 @@ describe('upsert Tests', function () {
         });
 
         it('no insert and update error', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -204,7 +204,7 @@ describe('upsert Tests', function () {
         });
 
         it('no insert and update error, using promise', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -219,7 +219,7 @@ describe('upsert Tests', function () {
 
                 global.Promise = PromiseLib;
 
-                var promise = connection.upsert({}, {}, {});
+                const promise = connection.upsert({}, {}, {});
 
                 promise.then(function () {
                     assert.fail();
@@ -233,7 +233,7 @@ describe('upsert Tests', function () {
         });
 
         it('insert valid', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -260,7 +260,7 @@ describe('upsert Tests', function () {
         });
 
         it('insert valid, using promise', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -277,7 +277,7 @@ describe('upsert Tests', function () {
 
                 global.Promise = PromiseLib;
 
-                var promise = connection.upsert({}, {}, {});
+                const promise = connection.upsert({}, {}, {});
 
                 promise.then(function (result) {
                     assert.deepEqual(result, {
@@ -292,7 +292,7 @@ describe('upsert Tests', function () {
         });
 
         it('row exists, update valid', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -330,7 +330,7 @@ describe('upsert Tests', function () {
         });
 
         it('row exists, update valid, using promise', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -347,7 +347,7 @@ describe('upsert Tests', function () {
 
                 global.Promise = PromiseLib;
 
-                var promise = connection.upsert({
+                const promise = connection.upsert({
                     query: 'SELECT * FROM MY_TABLE WHERE A = :a',
                     update: 'UPDATE MY_TABLE SET B = :b, MY_CLOB = EMPTY_CLOB() WHERE A = :a'
                 }, {
@@ -373,7 +373,7 @@ describe('upsert Tests', function () {
         });
 
         it('row exists, update did not modify any row', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -399,7 +399,7 @@ describe('upsert Tests', function () {
         });
 
         it('insert unique constraint error and update valid', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
@@ -408,7 +408,7 @@ describe('upsert Tests', function () {
                     arguments[arguments.length - 1](null, []);
                 };
 
-                var insertCalled = false;
+                let insertCalled = false;
                 connection.insert = function () {
                     insertCalled = true;
 
@@ -434,21 +434,21 @@ describe('upsert Tests', function () {
         });
 
         it('insert no impact and update valid', function (done) {
-            var oracledb = createOracleDB();
+            const oracledb = createOracleDB();
 
             oracledb.getConnection({}, function (connectionError, connection) {
                 assert.isNull(connectionError);
 
                 connection.query = function () {
-                    var args = asArray(arguments);
+                    const args = asArray(arguments);
                     assert.equal(args[0], 'select 1');
 
                     args[args.length - 1](null, []);
                 };
 
-                var insertCalled = false;
+                let insertCalled = false;
                 connection.insert = function () {
-                    var args = asArray(arguments);
+                    const args = asArray(arguments);
                     assert.equal(args[0], 'insert 2');
 
                     insertCalled = true;
@@ -459,7 +459,7 @@ describe('upsert Tests', function () {
                 };
 
                 connection.update = function () {
-                    var args = asArray(arguments);
+                    const args = asArray(arguments);
                     assert.equal(args[0], 'update 3');
 
                     args[args.length - 1](null, {

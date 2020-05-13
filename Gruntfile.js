@@ -5,14 +5,15 @@
 /*eslint-disable no-underscore-dangle*/
 
 module.exports = function (grunt) {
-    var commons = require('js-project-commons');
+    const commons = require('js-project-commons');
 
     grunt.loadNpmTasks('grunt-shell');
 
     commons.grunt.config.initConfig(grunt, {
         buildConfig: {
             projectRoot: __dirname,
-            nodeProject: true
+            nodeProject: true,
+            skipSecurityCheck: true
         },
         apidoc2readme: {
             readme: {
@@ -20,7 +21,7 @@ module.exports = function (grunt) {
                     tags: {
                         'connection-upsert': 'Connection.upsert'
                     },
-                    modifySignature: function (line) {
+                    modifySignature(line) {
                         return line.split('Connection.').join('connection.').split('Promise').join('[Promise]');
                     }
                 }

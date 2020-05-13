@@ -1,8 +1,6 @@
 # oracledb-upsert
 
-[![NPM Version](http://img.shields.io/npm/v/oracledb-upsert.svg?style=flat)](https://www.npmjs.org/package/oracledb-upsert) [![Build Status](https://travis-ci.org/sagiegurari/oracledb-upsert.svg)](http://travis-ci.org/sagiegurari/oracledb-upsert) [![Coverage Status](https://coveralls.io/repos/sagiegurari/oracledb-upsert/badge.svg)](https://coveralls.io/r/sagiegurari/oracledb-upsert) [![Known Vulnerabilities](https://snyk.io/test/github/sagiegurari/oracledb-upsert/badge.svg)](https://snyk.io/test/github/sagiegurari/oracledb-upsert) [![Inline docs](http://inch-ci.org/github/sagiegurari/oracledb-upsert.svg?branch=master)](http://inch-ci.org/github/sagiegurari/oracledb-upsert)<br>
-[![License](https://img.shields.io/npm/l/oracledb-upsert.svg?style=flat)](https://github.com/sagiegurari/oracledb-upsert/blob/master/LICENSE) [![Total Downloads](https://img.shields.io/npm/dt/oracledb-upsert.svg?style=flat)](https://www.npmjs.org/package/oracledb-upsert) [![Dependency Status](https://david-dm.org/sagiegurari/oracledb-upsert.svg)](https://david-dm.org/sagiegurari/oracledb-upsert) [![devDependency Status](https://david-dm.org/sagiegurari/oracledb-upsert/dev-status.svg)](https://david-dm.org/sagiegurari/oracledb-upsert?type=dev)<br>
-[![peerDependency Status](https://david-dm.org/sagiegurari/oracledb-upsert/peer-status.svg)](https://david-dm.org/sagiegurari/oracledb-upsert?type=peer)
+[![NPM Version](http://img.shields.io/npm/v/oracledb-upsert.svg?style=flat)](https://www.npmjs.org/package/oracledb-upsert) [![CI](https://github.com/sagiegurari/oracledb-upsert/workflows/CI/badge.svg?branch=master)](https://github.com/sagiegurari/oracledb-upsert/actions) [![Coverage Status](https://coveralls.io/repos/sagiegurari/oracledb-upsert/badge.svg)](https://coveralls.io/r/sagiegurari/oracledb-upsert) [![Known Vulnerabilities](https://snyk.io/test/github/sagiegurari/oracledb-upsert/badge.svg)](https://snyk.io/test/github/sagiegurari/oracledb-upsert) [![Inline docs](http://inch-ci.org/github/sagiegurari/oracledb-upsert.svg?branch=master)](http://inch-ci.org/github/sagiegurari/oracledb-upsert) [![License](https://img.shields.io/npm/l/oracledb-upsert.svg?style=flat)](https://github.com/sagiegurari/oracledb-upsert/blob/master/LICENSE) [![Total Downloads](https://img.shields.io/npm/dt/oracledb-upsert.svg?style=flat)](https://www.npmjs.org/package/oracledb-upsert)
 
 > UPSERT (insert/update) extension to oracledb.
 
@@ -118,6 +116,7 @@ See [contributing guide](.github/CONTRIBUTING.md)
 
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
+| 2020-05-13  | v2.0.0  | Migrate to github actions and upgrade minimal node version |
 | 2019-02-08  | v1.2.1  | Maintenance |
 | 2016-08-05  | v0.0.43 | Added promise support |
 | 2016-03-04  | v0.0.1  | Initial release. |

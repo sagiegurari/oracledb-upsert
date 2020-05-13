@@ -1,14 +1,14 @@
 'use strict';
 
-var asyncLib = require('async');
-var chai = require('chai');
-var assert = chai.assert;
+const asyncLib = require('async');
+const chai = require('chai');
+const assert = chai.assert;
 
 describe('Integration Tests', function () {
-    var self = this;
+    const self = this;
 
-    var integrated = true;
-    var connAttrs = {
+    let integrated = true;
+    const connAttrs = {
         user: process.env.TEST_ORACLE_USER,
         password: process.env.TEST_ORACLE_PASSWORD,
         connectString: process.env.TEST_ORACLE_CONNECTION_STRING
@@ -23,16 +23,16 @@ describe('Integration Tests', function () {
             return undefined;
         });
     } else {
-        var oracledb = require('oracledb');
+        const oracledb = require('oracledb');
 
         oracledb.autoCommit = true;
 
-        var simpleOracleDB = require('simple-oracledb');
+        const simpleOracleDB = require('simple-oracledb');
         require('../../'); //load upsert
 
         simpleOracleDB.extend(oracledb);
 
-        var end = function (done, connection) {
+        const end = function (done, connection) {
             if (connection) {
                 connection.release();
             }
@@ -40,8 +40,8 @@ describe('Integration Tests', function () {
             setTimeout(done, 10);
         };
 
-        var testPool;
-        var initDB = function (tableName, data, cb) {
+        let testPool;
+        const initDB = function (tableName, data, cb) {
             oracledb.getConnection(connAttrs, function (connErr, connection) {
                 data = data || [];
 
@@ -52,12 +52,12 @@ describe('Integration Tests', function () {
                     }, 100);
                 } else {
                     connection.execute('DROP TABLE ' + tableName, [], function () {
-                        connection.execute('CREATE TABLE ' + tableName + ' (ID NUMBER PRIMARY KEY, NAME VARCHAR2(250), LOB_DATA CLOB)', [], function (createError) {
+                        connection.execute('CREATE TABLE ' + tableName + ' (ID NUMBER PRIMARY KEY, NAME constCHAR2(250), LOB_DATA CLOB)', [], function (createError) {
                             if (createError) {
                                 console.error(createError);
                                 assert.fail('UNABLE TO CREATE DB TABLE: ' + tableName);
                             } else {
-                                var func = [];
+                                const func = [];
                                 data.forEach(function (rowData) {
                                     func.push(function (asyncCB) {
                                         if (!rowData.LOB_DATA) {
@@ -106,7 +106,7 @@ describe('Integration Tests', function () {
         self.timeout(30000);
 
         describe('upsert', function () {
-            var createSQLs = function (table) {
+            const createSQLs = function (table) {
                 return {
                     query: 'SELECT ID FROM ' + table + ' WHERE ID = :id',
                     insert: 'INSERT INTO ' + table + ' (ID, NAME, LOB_DATA) VALUES (:id, :name, EMPTY_CLOB())',
@@ -115,7 +115,7 @@ describe('Integration Tests', function () {
             };
 
             it('empty table', function (done) {
-                var table = 'TEST_ORA1';
+                const table = 'TEST_ORA1';
                 initDB(table, null, function (pool) {
                     pool.getConnection(function (err, connection) {
                         assert.isNull(err);
@@ -156,7 +156,7 @@ describe('Integration Tests', function () {
             });
 
             it('existing row table', function (done) {
-                var table = 'TEST_ORA2';
+                const table = 'TEST_ORA2';
                 initDB(table, [
                     {
                         id: 110,
