@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install Dependencies
-      run: npm install
+      run: npm install && npm install --no-save simple-oracledb
     - name: Run CI
       run: npm test
     - name: Coveralls
